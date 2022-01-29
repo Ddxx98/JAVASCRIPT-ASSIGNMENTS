@@ -14,10 +14,13 @@ function addItem(){
     inputField.value = ""
     //console.log(para.textContent," added")
 
-    para.addEventListener("click",deleteItem)
+    para.addEventListener("click",()=> deleteItem(para))
+    //para.addEventListener("click",deleteItem(para))
     
-    function deleteItem(){
-        //console.log(para.textContent,"deleted") 
-        todo.removeChild(para)  
-    }
+}
+
+function deleteItem(para){
+    //console.log(para.textContent,"deleted") 
+    //var p = document.getElementById('val')
+    todo.removeChild(para)  
 }
