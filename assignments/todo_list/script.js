@@ -1,10 +1,11 @@
 let addToDoButton = document.querySelector("button")
 //let inputField = document.querySelector("input")
 let todo = document.querySelector(".todos")
+let drop = document.querySelector("#dropdown")
 let todos = []
 
 //var i = 0
-//addToDoButton.addEventListener("click", addItem)
+addToDoButton.addEventListener("click", work)
 
 async function main(){
     try{
@@ -22,7 +23,18 @@ async function main(){
         console.log(e)
     }
 }
-addToDoButton.addEventListener('click',function(){
+
+function work(){
+    if(drop.value === "list"){
+        main()
+    }else if(drop.value === "completed"){
+        completed()
+    }else if(drop.value === "pending"){
+        pending()
+    }
+}
+
+function completed(){
     todo.innerHTML = ""
     todos.filter(todom => todom.completed).forEach((todom,index)=>{
         const newTodo = document.createElement('p')
@@ -30,7 +42,16 @@ addToDoButton.addEventListener('click',function(){
         newTodo.innerHTML = todom.title
         todo.appendChild(newTodo)
     })
-})
+}
+function pending(){
+    todo.innerHTML = ""
+    todos.filter(todom => !todom.completed).forEach((todom,index)=>{
+        const newTodo = document.createElement('p')
+        newTodo.setAttribute('key',index)
+        newTodo.innerHTML = todom.title
+        todo.appendChild(newTodo)
+    })
+}
 main()
 // function addItem(){
 //     var para = document.createElement('p')
